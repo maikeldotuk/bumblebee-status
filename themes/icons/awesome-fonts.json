@@ -91,10 +91,10 @@
 		"unlimited": { "prefix": "", "suffix": "" },
 		"estimate": {	"prefix": ""  },
 		"unknown-10": { "prefix": "", "suffix": "" },
-		"unknown-25": { "prefix": "", "suffix": "" },
-		"unknown-50": { "prefix": "", "suffix": "" },
-		"unknown-80": { "prefix": "", "suffix": "" },
-		"unknown-100": { "prefix": "", "suffix": "" }
+		"unknown-25": { "prefix": "", "suffix": "" },
+		"unknown-50": { "prefix": "", "suffix": "" },
+		"unknown-80": { "prefix": "", "suffix": "" },
+		"unknown-100": { "prefix": "", "suffix": "" }
 	},
 	"battery_all": {
 		"charged": { "prefix": "", "suffix": "" },

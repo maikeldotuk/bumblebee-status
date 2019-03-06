@@ -12,6 +12,7 @@ import bumblebee.input
 import bumblebee.output
 import bumblebee.engine
 import requests
+import datetime
 
 class Module(bumblebee.engine.Module):
     def __init__(self, engine, config):
@@ -19,6 +20,8 @@ class Module(bumblebee.engine.Module):
             bumblebee.output.Widget(full_text=self.utilization)
         )
         self.value = 'Fuck you'
+        self.conversion = 0
+        self.thehour = 99
         engine.input.register_callback(self, button=bumblebee.input.LEFT_MOUSE,
             cmd="gnome-system-monitor")
 
@@ -35,15 +38,21 @@ class Module(bumblebee.engine.Module):
 
     def fetchconversion(self):
         # TODO: This should be done differently, to allow for different currency
-        r = requests.get('https://api.cryptonator.com/api/ticker/xmr-gbp')
-        try:
-            to_json = r.json()
-            result = to_json['ticker']['price']
-            to_decimal = float(result)
-        except Exception as e:
-            print(e)
-            return 1
-        return to_decimal
+        # Should get it just once per hour
+        rightnow = datetime.datetime.now().hour
+        if self.thehour == rightnow:
+            return self.conversion
+        else:
+            r = requests.get('https://api.cryptonator.com/api/ticker/xmr-gbp')
+            try:
+                to_json = r.json()
+                result = to_json['ticker']['price']
+                to_decimal = float(result)
+                self.conversion = to_decimal
+                self.thehour = rightnow
+            except Exception as e:
+                return self.conversion
+            return to_decimal
 
     def update(self, widgets):
         self.value = 'Fuck you again'

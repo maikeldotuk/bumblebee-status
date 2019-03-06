@@ -9,7 +9,7 @@
 		},
 		"warning": {
 			"fg": "cursor",
-			"bg": "color6"
+			"bg": "color5"
 		},
 		"default_separators": false
 	},
