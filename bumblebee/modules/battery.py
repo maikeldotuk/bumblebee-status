@@ -80,7 +80,7 @@ class Module(bumblebee.engine.Module):
         widget.set("capacity", capacity)
         output =  "{}%".format(capacity)
         widget.set("theme.minwidth", "100%")
-        
+
         if bumblebee.util.asbool(self.parameter("showremaining", True))\
                 and self.getCharge(widget) == "Discharging":
             output = "{} {}".format(output, self.remaining())
@@ -89,7 +89,7 @@ class Module(bumblebee.engine.Module):
             output = "{} ({})".format(output, os.path.basename(widget.name))
 
         return output
-       
+
     def state(self, widget):
         state = []
         capacity = widget.get("capacity")

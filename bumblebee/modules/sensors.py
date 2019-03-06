@@ -30,7 +30,7 @@ class Module(bumblebee.engine.Module):
         super(Module, self).__init__(engine, config,
                                      bumblebee.output.Widget(full_text=self.temperature))
         self._temperature = "unknown"
-        self._mhz = "n/a"
+        self._mhz = ''
         self._match_number = int(self.parameter("match_number", "-1"))
         self._match_pattern = self.parameter("match_pattern", None)
         self._pattern = re.compile(r"^\s*{}:\s*([\d.]+)$".format(self.parameter("match", "temp1_input")), re.MULTILINE)
@@ -107,10 +107,11 @@ class Module(bumblebee.engine.Module):
             return "{:0.01f} GHz".format(float(mhz)/1000.0)
 
     def temperature(self, _):
-        return u"{}°c @ {}".format(self._temperature, self._mhz)
+        return u"{}°c".format(self._temperature)
+        #return u"{}°c @ {}".format(self._temperature, self._mhz)
 
     def update(self, widgets):
         self._temperature = self.get_temp()
-        self._mhz = self.get_mhz()
+        #self._mhz = self.get_mhz()
 
 # vim: tabstop=8 expandtab shiftwidth=4 softtabstop=4
